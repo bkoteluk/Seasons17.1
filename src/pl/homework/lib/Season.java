@@ -38,11 +38,11 @@ public enum Season {
         return new String[] {Month.DECEMBER.getNamePl(), Month.JANUARY.getNamePl(), Month.FEBRUARY.getNamePl()};
     }
 
-    public static Season enumValueFromField(String field) {
+    public static Season enumValueFromField(String field) throws IllegalSeasonException {
         for (Season season : values()) {
-            if (season.getName().equals(field))
+            if (season.getName().equalsIgnoreCase(field))
                 return season;
         }
-        return null;
+        throw new IllegalSeasonException("Nieprawidłowa nazwa pory roku - " + field);
     }
 }
